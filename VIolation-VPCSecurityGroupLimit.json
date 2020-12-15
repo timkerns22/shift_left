@@ -1,0 +1,209 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "KeyName": {
+            "Description": "Name of an existing EC2 KeyPair",
+            "Type": "AWS::EC2::KeyPair::KeyName",
+            "ConstraintDescription": "must be the name of an existing EC2 KeyPair."
+        }
+    },
+    "Resources": {
+        "EC2InstanceLimit": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "InstanceType": "t1.micro",
+                "ImageId": "ami-b12da5d1",
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "NetworkInterfaces": [
+                    {
+                        "SubnetId": {
+                            "Ref": "EC2SubnetLimit"
+                        },
+                        "DeviceIndex": "0"
+                    }
+                ],
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "EC2SGLimit1"
+                    },{
+                        "Ref": "EC2SGLimit2"
+                    },{
+                        "Ref": "EC2SGLimit3"
+                    },{
+                        "Ref": "EC2SGLimit4"
+                    },{
+                        "Ref": "EC2SGLimit5"
+                    },{
+                        "Ref": "EC2SGLimit6"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "38dd1faa-9304-429e-bd88-fc83c9f9dcca"
+                }
+            }
+        },
+        "EC2VPCLimit": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "172.31.0.0/16",
+                "EnableDnsSupport": true,
+                "EnableDnsHostnames": true
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "7021c33b-116d-48ac-a192-51bf7c9abd6d"
+                }
+            }
+        },
+        "EC2SubnetLimit": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "EC2VPCLimit"
+                },
+                "CidrBlock": "172.31.0.0/20"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "80d90ffc-5021-44a9-88c4-74919c547188"
+                }
+            }
+        },
+        "EC2SGLimit1": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIpv6": "::/0"
+                    }
+                ],
+                "VpcId" :{
+                    "Ref": "EC2VPCLimit"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SGLimit2": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIpv6": "::/0"
+                    }
+                ],
+                "VpcId" :{
+                    "Ref": "EC2VPCLimit"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SGLimit3": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIpv6": "::/0"
+                    }
+                ],
+                "VpcId" :{
+                    "Ref": "EC2VPCLimit"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SGLimit4": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIpv6": "::/0"
+                    }
+                ],
+                "VpcId" :{
+                    "Ref": "EC2VPCLimit"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SGLimit5": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIpv6": "::/0"
+                    }
+                ],
+                "VpcId" :{
+                    "Ref": "EC2VPCLimit"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SGLimit6": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIpv6": "::/0"
+                    }
+                ],
+                "VpcId" :{
+                    "Ref": "EC2VPCLimit"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        }
+    }
+}

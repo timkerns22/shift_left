@@ -1,0 +1,35 @@
+{   "Resources": {
+    "myEventSubscription": {
+        "Type": "AWS::RDS::EventSubscription",
+        "Properties": {
+            "EventCategories": [
+                "configuration change",
+                "failure",
+                "deletion"
+            ],
+            "SnsTopicArn": "arn:aws:sns:us-west-2:123456789012:example-topic",
+            "SourceIds": [
+                "MyDB",
+                {
+                    "Ref": "MyDB"
+                }
+            ],
+            "SourceType": "db-instance",
+            "Enabled": true
+        }
+    },
+    "MyDB": {
+        "Type": "AWS::RDS::DBInstance",
+        "Properties": {         
+            "DBName": "config",         
+            "AllocatedStorage": "100",
+            "DBInstanceClass": "db.m1.small",
+            "Engine": "MySQL",
+            "EngineVersion": "5.6.13",
+            "Iops": "1000",
+            "MasterUsername": "audit",
+            "MasterUserPassword": "Skyhigh123!"
+             }
+        }
+    }
+}

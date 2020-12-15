@@ -1,0 +1,29 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "7a46dcd7-d8f1-4154-9996-f28e4308bc3c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 149,
+                    "y": 125
+                },
+                "z": 0
+            }
+        }
+    },
+    "Resources": {
+        "NewVolume" : {
+        "Type" : "AWS::EC2::Volume",
+        "Properties" : {
+        "Size" : "100",
+        "Encrypted" : False,
+        "Tags" : [ {
+            "Key" : "MyTag",
+            "Value" : "TagValue" } ]
+        }
+    }
+}

@@ -1,0 +1,82 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "03767fa3-e1f1-4674-afcc-5bfeda0078fc": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 90,
+                    "y": 100
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "33ce20bb-0f5c-4156-b975-873b44145a42"
+                ]
+            },
+            "33ce20bb-0f5c-4156-b975-873b44145a42": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 210,
+                    "y": 150
+                },
+                "z": 0,
+                "embeds": []
+            }
+        }
+    },
+    "Resources": {
+        "EC2I44F661": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-b12da5d1",
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "EC2SG3LN0H1"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "03767fa3-e1f1-4674-afcc-5bfeda0078fc"
+                }
+            }
+        },
+        "EC2SG3LN0H1": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupName" : "UserDefinedSG",
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "33ce20bb-0f5c-4156-b975-873b44145a42"
+                }
+            }
+        }
+    },
+    "Parameters": {
+        "KeyName": {
+            "Description": "Name of an existing EC2 KeyPair",
+            "Type": "AWS::EC2::KeyPair::KeyName",
+            "ConstraintDescription": "must be the name of an existing EC2 KeyPair."
+        }
+    }
+}

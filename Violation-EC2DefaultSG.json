@@ -1,0 +1,42 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "38dd1faa-9304-429e-bd88-fc83c9f9dcca": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 273,
+                    "y": 98
+                },
+                "z": 0
+            }
+        }
+    },
+    "Parameters": {
+        "KeyName": {
+            "Description": "Name of an existing EC2 KeyPair",
+            "Type": "AWS::EC2::KeyPair::KeyName",
+            "ConstraintDescription": "must be the name of an existing EC2 KeyPair."
+        }
+    },
+    "Resources": {
+        "EC2IAQN3": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "InstanceType": "t1.micro",
+                "ImageId": "ami-b12da5d1",
+                "KeyName": {
+                    "Ref": "KeyName"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "38dd1faa-9304-429e-bd88-fc83c9f9dcca"
+                }
+            }
+        }
+    }
+}

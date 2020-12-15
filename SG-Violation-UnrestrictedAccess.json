@@ -1,0 +1,551 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "da500109-8303-4a4b-b758-44c969698eec": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 126,
+                    "y": 108
+                },
+                "z": 0,
+                "isassociatedwith": [
+                    "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                ]
+            },
+            "dbe14d5b-9789-413a-b66f-cf46650cc990": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 330,
+                    "y": 110
+                },
+                "z": 0
+            },
+            "8d58f651-345f-438d-b0cf-5241604cdc58": {
+                "source": {
+                    "id": "da500109-8303-4a4b-b758-44c969698eec"
+                },
+                "target": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                },
+                "z": 1
+            }
+        }
+    },
+    "Parameters": {
+        "KeyName": {
+            "Description": "Name of an existing EC2 KeyPair",
+            "Type": "AWS::EC2::KeyPair::KeyName",
+            "ConstraintDescription": "must be the name of an existing EC2 KeyPair."
+        }
+    },
+    "Resources": {
+        "EC2Instance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "InstanceType": "t1.micro",
+                "ImageId": "ami-b12da5d1",
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "SecurityGroupIds": [
+                    {
+                        "Ref": "EC2SG18UnrestrictedInboundAccessOnUncommonPorts"
+                    },
+                    {
+                        "Ref": "EC2SG19UnrestrictedOutboundAccess"
+                    },
+                    {
+                        "Ref": "EC2SG20EC2SecurityGroupPortConfiguration"
+                    },
+                    {
+                        "Ref": "EC2SG21UnrestrictedAccesstoNonHTTP"
+                    },
+                    {
+                        "Ref": "EC2SG22UnrestrictedCIFSAccess"
+                    },
+                    {
+                        "Ref": "EC2SG23UnrestrictedDNSAccess"
+                    },
+                    {
+                        "Ref": "EC2SG24UnrestrictedFTPAccess"
+                    },
+                    {
+                        "Ref": "EC2SG25UnrestrictedMongoDBAccess"
+                    },
+                    {
+                        "Ref": "EC2SG26UnrestrictedMSSQLAccess"
+                    },
+                    {
+                        "Ref": "EC2SG27UnrestrictedMSSQLDatabaseAccessUDP"
+                    },
+                    {
+                        "Ref": "EC2SG28UnrestrictedMySQLAccess"
+                    },
+                    {
+                        "Ref": "EC2SG29UnrestrictedNetBIOSAccess"
+                    },
+                    {
+                        "Ref": "EC2SG30UnrestrictedOracleDatabaseAccess"
+                    },
+                    {
+                        "Ref": "EC2SG31UnrestrictedPostgreSQLAccess"
+                    },
+                    {
+                        "Ref": "EC2SG32UnrestrictedRPCAccess"
+                    },
+                    {
+                        "Ref": "EC2SG33UnrestrictedSMTPAccess"
+                    },
+                    {
+                        "Ref": "EC2SG34UnrestrictedSSHAccess"
+                    },
+                    {
+                        "Ref": "EC2SG35UnrestrictedTelnetAccess"
+                    },
+                    {
+                        "Ref": "EC2SG36UnrestrictedVNCListenerAccess"
+                    },
+                    {
+                        "Ref": "EC2SG37UnrestrictedVNCServerAcces"
+                    },
+                    {
+                        "Ref": "EC2SG38UnrestrictedRemoteDesktopAccess"
+                    },
+                    {
+                        "Ref": "EC2SG39UnrestrictedICMPAccess"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "da500109-8303-4a4b-b758-44c969698eec"
+                }
+            }
+        },
+        "EC2SG18UnrestrictedInboundAccessOnUncommonPorts": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 1025,
+                        "ToPort": 1025,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG19UnrestrictedOutboundAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupEgress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 22,
+                        "ToPort": 22,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG20EC2SecurityGroupPortConfiguration": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 1025,
+                        "ToPort": 1027,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG21UnrestrictedAccesstoNonHTTP": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 1025,
+                        "ToPort": 1025,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG22UnrestrictedCIFSAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 445,
+                        "ToPort": 445,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG23UnrestrictedDNSAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 53,
+                        "ToPort": 53,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG24UnrestrictedFTPAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 20,
+                        "ToPort": 20,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG25UnrestrictedMongoDBAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 27017,
+                        "ToPort": 27017,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG26UnrestrictedMSSQLAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 1433,
+                        "ToPort": 1433,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG27UnrestrictedMSSQLDatabaseAccessUDP": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 1434,
+                        "ToPort": 1434,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG28UnrestrictedMySQLAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "udp",
+                        "FromPort": 3306,
+                        "ToPort": 3306,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG29UnrestrictedNetBIOSAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 139,
+                        "ToPort": 139,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG30UnrestrictedOracleDatabaseAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 1521,
+                        "ToPort": 1521,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG31UnrestrictedPostgreSQLAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 5432,
+                        "ToPort": 5432,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG32UnrestrictedRPCAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 135,
+                        "ToPort": 135,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG33UnrestrictedSMTPAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 25,
+                        "ToPort": 25,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG34UnrestrictedSSHAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 22,
+                        "ToPort": 22,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG35UnrestrictedTelnetAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 23,
+                        "ToPort": 23,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG36UnrestrictedVNCListenerAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 5500,
+                        "ToPort": 5500,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG37UnrestrictedVNCServerAcces": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 5900,
+                        "ToPort": 5900,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG38UnrestrictedRemoteDesktopAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 3389,
+                        "ToPort": 3389,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        },
+        "EC2SG39UnrestrictedICMPAccess": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupDescription": "Allow http to client host",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "icmp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "dbe14d5b-9789-413a-b66f-cf46650cc990"
+                }
+            }
+        }
+    }
+}

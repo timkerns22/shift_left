@@ -1,0 +1,70 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+
+  "Resources": {
+    "mydesignbucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "mydesignbucket",
+        "AccessControl": "PublicReadWrite",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "LoggingConfiguration": {
+          "DestinationBucketName": "123",
+          "LogFilePrefix": "shn"
+        },
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "ExpirationInDays": 20,
+              "Status": "Disabled"
+            }
+          ]
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": false,
+          "BlockPublicPolicy": false,
+          "IgnorePublicAcls": false,
+          "RestrictPublicBuckets": false
+        },
+        "Tags": [
+          {
+            "Key": "CFT",
+            "Value": "Design"
+          }
+        ]
+      }
+    },
+    "mybucketpolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "mydesignbucket"
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Id": "Policy1556000995461",
+          "Statement": [
+            {
+              "Sid": "Stmt1556000991881",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": "arn:aws:s3:::mydesignbucket/*"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

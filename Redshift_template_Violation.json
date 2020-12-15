@@ -1,0 +1,15 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+  	"myCluster": {
+   "Type": "AWS::Redshift::Cluster",
+   "Properties": {
+    "DBName": "mydb", 
+    "MasterUsername": "master",
+    "MasterUserPassword": "MasterPassword@8",
+    "NodeType": "ds2.xlarge",
+    "ClusterType": "single-node"
+  }
+}
+}
+}

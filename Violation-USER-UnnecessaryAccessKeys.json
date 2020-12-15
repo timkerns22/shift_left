@@ -1,0 +1,29 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "IAMUser99": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "LoginProfile" : {
+                    "Password" : "String",
+                    "PasswordResetRequired" : false
+                },
+                "UserName" : "ShiftLeftUser"
+            }
+        },
+        "IAMAcessKey99": {
+            "Type": "AWS::IAM::AccessKey",
+            "Properties": {
+                "Status" : "Active",
+                "UserName" : "ShiftLeftUser"
+            }
+        },
+        "IAMAcessKey98": {
+            "Type": "AWS::IAM::AccessKey",
+            "Properties": {
+                "Status" : "Active",
+                "UserName" : "ShiftLeftUser"
+            }
+        }
+    }
+}

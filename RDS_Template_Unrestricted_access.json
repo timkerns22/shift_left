@@ -1,0 +1,55 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "RDS1": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "DBInstanceClass": "db.t2.small",
+        "MasterUsername": "MyName",
+        "MasterUserPassword": "MyPassword",
+        "AllocatedStorage": 1000,
+        
+        "Engine": "MySQL",
+        "PubliclyAccessible" : true,
+        "VPCSecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "Securitygroup123",
+              "GroupId"
+            ]
+          }
+        ]
+      }
+    },
+    "Securitygroup123": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Allow http to client host",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 80,
+            "ToPort": 80,
+            "CidrIpv6": "::/0"
+          }
+        ]
+      }
+    } ,
+    "VPC123": {
+      "Type" : "AWS::EC2::VPC",
+      "Properties" : {
+        "CidrBlock" : "10.0.0.0/16",
+        "EnableDnsSupport" : false,
+        "EnableDnsHostnames" : false
+      }
+    }
+
+  }
+
+}

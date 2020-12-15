@@ -1,0 +1,19 @@
+{
+ "AWSTemplateFormatVersion": "2010-09-09",
+"Resources": {
+    "MyDB": {
+        "Type": "AWS::RDS::DBInstance",
+        "Properties": {
+            "DBName": "config",         
+            "AllocatedStorage": "100",
+            "DBInstanceClass": "db.m1.small",
+            "Engine": "MySQL",
+            "EngineVersion": "5.6.13",
+            "Iops": "1000",
+            "MasterUsername": "audit",
+            "MasterUserPassword": "Skyhigh123!",
+            "BackupRetentionPeriod": 8
+        }
+    }
+}  
+}

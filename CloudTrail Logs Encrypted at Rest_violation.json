@@ -15,14 +15,10 @@
                     "DestinationBucketName": "123",
                     "LogFilePrefix": "shn"
                 }
+                
             }
         },
-        "myLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-                "RetentionInDays": 7
-            }
-        },
+ 
         "myTrail": {
             "Type": "AWS::CloudTrail::Trail",
             "Properties": {
@@ -30,12 +26,7 @@
                     "Ref": "S3Bucket"
                 },
                 "IsLogging": true,
-                "IsMultiRegionTrail": true,
-                "EnableLogFileValidation" : true,
-                "KMSKeyId": "12345678-1234-1234-1234-123456789012",
-                "CloudWatchLogsLogGroupArn" :{
-                    "Ref": "myLogGroup"
-                }
+                "IsMultiRegionTrail": true
             }
         }
     }
